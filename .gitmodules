@@ -1,0 +1,3 @@
+[submodule "extern/cubemx.cmake"]
+	path = extern/cubemx.cmake
+	url = https://github.com/JoppeBlondel/cubemx.cmake.git
