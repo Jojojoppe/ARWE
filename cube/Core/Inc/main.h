@@ -61,6 +61,7 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOC
 #define SWIN_Pin GPIO_PIN_0
 #define SWIN_GPIO_Port GPIOA
+#define SWIN_EXTI_IRQn EXTI0_1_IRQn
 #define RELAY_Pin GPIO_PIN_0
 #define RELAY_GPIO_Port GPIOB
 #define SENSE_Pin GPIO_PIN_8

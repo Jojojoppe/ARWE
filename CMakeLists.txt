@@ -9,6 +9,9 @@ project(ARWE C)
 
 add_executable(ARWE
   src/main.c
+  src/SEGGER_RTT.c
+  src/SEGGER_RTT_ASM_ARMv7M.S
+  src/SEGGER_RTT_printf.c
 )
 cubemx_target(TARGET ARWE 
   IOC ${CMAKE_CURRENT_SOURCE_DIR}/cube/ARWE.ioc

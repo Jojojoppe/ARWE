@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "cube",
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64",
+            "compileCommands": "build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

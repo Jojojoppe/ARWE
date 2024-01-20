@@ -16,10 +16,26 @@
         "target/stm32f0x.cfg"
       ],
       "searchDir": [],
-      "runToEntryPoint": "main",
-      "showDevDebugOutput": "none",
+      "showDevDebugOutput": "raw",
       "preLaunchTask": "Build",
-      "gdbPath": "gdb-multiarch"
+      "gdbPath": "gdb-multiarch",
+      "overrideLaunchCommands": [
+        "load",
+        "monitor reset"
+      ],
+      "rttConfig": {
+        "enabled": true,
+        "address": "0x20000000",
+        "searchId": "SEGGER RTT",
+        "searchSize": 1024,
+        "decoders": [
+          {
+            "label": "",
+            "port": 0,
+            "type": "console"
+          }
+        ]
+      }
     }
 
   ]
