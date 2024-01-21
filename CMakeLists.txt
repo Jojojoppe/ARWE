@@ -18,3 +18,4 @@ cubemx_target(TARGET ARWE
   CUBEMX_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cube
 )
 target_compile_options(ARWE PUBLIC -g)
+target_link_options(ARWE PUBLIC -g -Wl,--print-memory-usage)

@@ -10,6 +10,9 @@
 #define HALF_OFF_TIME 5000
 #define QUARTER_OFF_TIME 10000
 
+// #define WFI_SLEEP_ENABLED
+// #define WFE_SLEEP_ENABLED
+
 // ----------------------------------------------------------------------------
 
 enum {
@@ -76,7 +79,12 @@ int main() {
   timerFunctions[SUBTIMER_ONOFF] = OnOff;
   // Start millisecond timer
   HAL_TIM_Base_Start_IT(&htim6);
+
   for (;;) {
+#ifdef WFI_SLEEP_ENABLED
+    // Enter sleep mode to wait for timer or EXTI interrupts
+    HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON, PWR_SLEEPENTRY_WFI);
+#endif
   }
 }
 
@@ -142,6 +150,11 @@ void Cooldown() {
   outputState = false;
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, 0);
   HAL_GPIO_WritePin(RELAY_GPIO_Port, RELAY_Pin, 0);
+
+#ifdef WFE_SLEEP_ENABLED
+  // Enter deep sleep mode and wait for EXTI interrupt
+  HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFE);
+#endif
 }
 
 void OnOff() {
