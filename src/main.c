@@ -6,11 +6,11 @@
 
 #define DEBOUNCE_TIME 100
 #define COOLDOWN_TIME 1000
-#define ON_TIME 1000
-#define HALF_OFF_TIME 5000
-#define QUARTER_OFF_TIME 10000
+#define ON_TIME 500
+#define HALF_OFF_TIME 4000
+#define QUARTER_OFF_TIME 8000
 
-// #define WFI_SLEEP_ENABLED
+#define WFI_SLEEP_ENABLED
 // #define WFE_SLEEP_ENABLED
 
 // ----------------------------------------------------------------------------
@@ -48,8 +48,8 @@ static unsigned long long timerValue;
 static unsigned long long timerExpiredValues[_SUBTIMER_NUMBER];
 static void (*timerFunctions[_SUBTIMER_NUMBER])();
 static bool timerUsed[_SUBTIMER_NUMBER];
-static unsigned int state;
-static bool outputState;
+static volatile unsigned int state;
+static volatile bool outputState;
 
 // ----------------------------------------------------------------------------
 
@@ -95,8 +95,8 @@ int main() {
 void SWIN_Debounced() {
   timerUsed[SUBTIMER_DEBOUNCE_SWIN] = false;
   // Get current pin state
-  GPIO_PinState state = HAL_GPIO_ReadPin(SWIN_GPIO_Port, SWIN_Pin);
-  if (state) {
+  GPIO_PinState pinstate = HAL_GPIO_ReadPin(SWIN_GPIO_Port, SWIN_Pin);
+  if (!pinstate) {
     // Rising edge SWIN
     // Make sure the cooldown period is stopped
     timerUsed[SUBTIMER_COOLDOWN] = false;
